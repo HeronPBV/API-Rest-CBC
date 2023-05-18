@@ -40,7 +40,7 @@ class Recursos extends Controller{
             }
 
         }else{
-            http_response_code(500);
+            http_response_code(400);
             echo json_encode(["erro" => "Não há recursos suficientes"]);
         }
     
