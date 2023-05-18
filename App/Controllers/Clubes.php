@@ -23,4 +23,24 @@ class Clubes extends Controller{
 
     }
 
+    public function store(){
+
+        $novoClube = $this->getRequestBody();
+
+        $clubeModel = $this->model("Clube");
+        $clubeModel->clube = $novoClube->clube;
+        $clubeModel->saldo_disponivel = $novoClube->saldo_disponivel;
+
+        $clubeModel = $clubeModel->insert();
+
+        if ($clubeModel) {
+            http_response_code(200);
+            echo "ok";
+        } else {
+            http_response_code(500);
+            echo json_encode(["erro" => "Problemas ao inserir preco"]);
+        }
+
+    }
+
 }

@@ -53,7 +53,25 @@ class Clube{
     
     }
 
-    
+    public function insert(){
+        
+        $query = " INSERT INTO ". self::$table_name ." (clube, saldo_disponivel) VALUES (?, ?) ";
+        
+        $stmt = Model::getConn()->prepare($query);
+        $stmt->bindValue(1, $this->clube);
+        $stmt->bindValue(2, $this->saldo_disponivel);
+
+        if ($stmt->execute()) {
+            $this->id = Model::getConn()->lastInsertId();
+            return $this;
+        } else {
+            print_r($stmt->errorInfo());
+            return null;
+        }
+
+    }
+
+
 
 
 }
