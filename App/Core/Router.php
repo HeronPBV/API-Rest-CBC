@@ -23,7 +23,11 @@ class Router{
 
         }elseif(empty($url[1])){
 
-            echo "CBC API Rest Gerenciamento de Recursos";
+            http_response_code(200);
+            echo json_encode([
+                "nome" => "CBC API Rest Gerenciamento de Recursos",
+                "instrução" => "Acesse a documentação para saber os endpoints disponíveis"
+            ]);
             
             exit;
 
@@ -44,7 +48,8 @@ class Router{
             case "GET":
 
                 if(get_class($this->controller) == "Recursos"){
-                    echo "Método não suportado";
+                    http_response_code(400);
+                    echo json_encode(["erro" => "Método não suportado"]);
                     exit;
                 }elseif(isset($url[2])){
                     $this->controllerMethod = "find";
@@ -60,7 +65,8 @@ class Router{
                 break;
 
             default: 
-                echo "Método não suportado";
+                http_response_code(400);
+                echo json_encode(["erro" => "Método não suportado"]);
                 exit;
                 break;
         }

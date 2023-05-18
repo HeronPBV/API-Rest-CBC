@@ -9,7 +9,8 @@ class Recursos extends Controller{
         $dadosConsumo = $this->getRequestBody();
 
         if(empty($dadosConsumo)){
-            echo "Faltam dados na requisição";
+            http_response_code(400);
+            echo json_encode(["erro" => "Faltam dados na requisição"]);
             die();
         }
 

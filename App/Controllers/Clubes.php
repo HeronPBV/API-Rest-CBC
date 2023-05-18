@@ -28,7 +28,8 @@ class Clubes extends Controller{
         $novoClube = $this->getRequestBody();
 
         if(empty($novoClube)){
-            echo "Faltam dados na requisição";
+            http_response_code(400);
+            echo json_encode(["erro" => "Faltam dados na requisição"]);
             die();
         }
 
@@ -40,10 +41,10 @@ class Clubes extends Controller{
 
         if ($clubeModel) {
             http_response_code(200);
-            echo "ok";
+            echo json_encode(["mensagem" => "ok"]);
         } else {
             http_response_code(500);
-            echo json_encode(["erro" => "Problemas ao inserir preco"]);
+            echo json_encode(["erro" => "Problemas ao inserir novo clube"]);
         }
 
     }

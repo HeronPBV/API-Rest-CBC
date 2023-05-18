@@ -23,7 +23,8 @@ class Clube{
     
                 return $result;
             } else {
-                return [];
+                http_response_code(404);
+                return ["erro" => "Nada foi encontrado"];
             }
         
         }else{
@@ -36,7 +37,8 @@ class Clube{
                 $result = $stmt->fetch(PDO::FETCH_OBJ);
 
                 if (!$result) {
-                    return "Clube não encontrado";
+                    http_response_code(404);
+                    return ["erro" => "Clube não encontrado"];
                 }
 
                 $this->id = $result->id;
@@ -46,7 +48,8 @@ class Clube{
 
                 return $this;
             } else {
-                return "Query não executada";
+                http_response_code(500);
+                return ["erro" => "Query não executada"];
             }
 
         }
@@ -65,8 +68,8 @@ class Clube{
             $this->id = Model::getConn()->lastInsertId();
             return $this;
         } else {
-            print_r($stmt->errorInfo());
-            return null;
+            http_response_code(500);
+            return ["erro" => "Query não executada"];
         }
 
     }
@@ -82,8 +85,8 @@ class Clube{
         if ($stmt->execute()) {
             return $this;
         } else {
-            print_r($stmt->errorInfo());
-            return null;
+            http_response_code(500);
+            return ["erro" => "Query não executada"];
         }
 
     }

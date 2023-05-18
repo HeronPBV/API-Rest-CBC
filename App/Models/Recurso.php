@@ -18,7 +18,8 @@ class Recurso{
             $result = $stmt->fetch(PDO::FETCH_OBJ);
 
             if (!$result) {
-                return "Recurso não encontrado";
+                http_response_code(400);
+                return ["erro" => "Recurso não encontrado"];
             }
 
             $this->id = $result->id;
@@ -28,7 +29,8 @@ class Recurso{
 
             return $this;
         } else {
-            return "Query não executada";
+            http_response_code(500);
+            return ["erro" => "Query não executada"];
         }
     }
 
@@ -43,8 +45,8 @@ class Recurso{
         if ($stmt->execute()) {
             return $this;
         } else {
-            print_r($stmt->errorInfo());
-            return null;
+            http_response_code(500);
+            return ["erro" => "Query não executada"];
         }
 
     }
@@ -55,9 +57,10 @@ class Recurso{
         $this->saldo_disponivel -= $valor_consumo;
 
         if($clube->update() && $this->update()){
-            return "ok";
+            http_response_code(200);
+            return ["mensagem" => "ok"];
         }
-        
+
     }
 
 
