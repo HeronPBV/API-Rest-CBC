@@ -21,8 +21,19 @@ class Recursos extends Controller{
         $recurso_id = $dadosConsumo->recurso_id;
         $valor_consumo = (float)(str_replace(",", ".", $dadosConsumo->valor_consumo));
 
-        $clubeModel->listAll($clube_id);
-        $recursoModel->select($recurso_id);
+        $retornoClube = $clubeModel->listAll($clube_id);
+        if(is_array($retornoClube)){
+            http_response_code(400);
+            echo json_encode($retornoClube);
+            die();
+        }
+        $retornoRecurso = $recursoModel->select($recurso_id);
+        if(is_array($retornoRecurso)){
+            http_response_code(400);
+            echo json_encode($retornoRecurso);
+            die();
+        }
+
 
         if($this->HasEnoughResorces($clubeModel, $recursoModel, $valor_consumo)){
 
