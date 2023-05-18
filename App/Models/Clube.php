@@ -13,7 +13,7 @@ class Clube{
 
         if(is_null($id)){
 
-            $query = " SELECT * FROM ". self::$table_name ." ORDER BY id DESC ";
+            $query = " SELECT * FROM ". self::$table_name ." ORDER BY id ASC ";
     
             $stmt = Model::getConn()->prepare($query);
             $stmt->execute();
