@@ -13,7 +13,8 @@ class Recursos extends Controller{
 
         $clube_id = $dadosConsumo->clube_id;
         $recurso_id = $dadosConsumo->recurso_id;
-        $valor_consumo = floatval($dadosConsumo->valor_consumo);
+        $valor_consumo = (float)(str_replace(",", ".", $dadosConsumo->valor_consumo));
+
         $clubeModel->listAll($clube_id);
         $recursoModel->select($recurso_id);
 
