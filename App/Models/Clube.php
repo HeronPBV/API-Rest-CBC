@@ -36,7 +36,7 @@ class Clube{
                 $result = $stmt->fetch(PDO::FETCH_OBJ);
 
                 if (!$result) {
-                    return null;
+                    return "Clube não encontrado";
                 }
 
                 $this->id = $result->id;
@@ -46,12 +46,14 @@ class Clube{
 
                 return $this;
             } else {
-                return null;
+                return "Query não executada";
             }
 
         }
     
     }
+
+    
 
 
 }
