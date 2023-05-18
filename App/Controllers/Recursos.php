@@ -34,8 +34,8 @@ class Recursos extends Controller{
             die();
         }
 
-
-        if($this->HasEnoughResorces($clubeModel, $recursoModel, $valor_consumo)){
+        $retornoTemSaldo = $this->HasEnoughResorces($clubeModel, $recursoModel, $valor_consumo);
+        if(is_bool($retornoTemSaldo) && $retornoTemSaldo == true){
 
             $saldo_anterior = $clubeModel->saldo_disponivel;
 
@@ -53,7 +53,7 @@ class Recursos extends Controller{
 
         }else{
             http_response_code(400);
-            echo json_encode(["erro" => "Não há recursos suficientes"]);
+            echo json_encode(["erro" => $retornoTemSaldo]);
         }
     
         
@@ -61,10 +61,12 @@ class Recursos extends Controller{
 
     private function HasEnoughResorces(Clube $clube, Recurso $recurso, float $valor_consumo){
 
-        if($recurso->saldo_disponivel >= $valor_consumo && $clube->saldo_disponivel >= $valor_consumo){
-            return true;
+        if($recurso->saldo_disponivel < $valor_consumo){
+            return "O saldo disponível do recurso é insuficiente";
+        }elseif($clube->saldo_disponivel < $valor_consumo){
+            return "O saldo disponível do clube é insuficiente";
         }else{
-            return false;
+            return true;
         }
 
     }
