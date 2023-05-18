@@ -71,6 +71,23 @@ class Clube{
 
     }
 
+    public function update(){
+
+        $query = " UPDATE ". self::$table_name ." SET saldo_disponivel = ? WHERE id = ? ";
+
+        $stmt = Model::getConn()->prepare($query);
+        $stmt->bindValue(1, $this->saldo_disponivel);
+        $stmt->bindValue(2, $this->id);
+
+        if ($stmt->execute()) {
+            return $this;
+        } else {
+            print_r($stmt->errorInfo());
+            return null;
+        }
+
+    }
+
 
 
 
