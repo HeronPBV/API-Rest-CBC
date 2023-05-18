@@ -39,11 +39,14 @@ class Router{
         $this->controller = new $this->controller;
 
         $this->method = $_SERVER["REQUEST_METHOD"];
-
+        
         switch($this->method){
             case "GET":
 
-                if(isset($url[2])){
+                if(get_class($this->controller) == "Recursos"){
+                    echo "Método não suportado";
+                    exit;
+                }elseif(isset($url[2])){
                     $this->controllerMethod = "find";
                     $this->params = [$url[2]];
                 }else{
@@ -56,7 +59,6 @@ class Router{
                 $this->controllerMethod = "store";
                 break;
 
-                
             default: 
                 echo "Método não suportado";
                 exit;
