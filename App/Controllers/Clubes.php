@@ -8,7 +8,7 @@ class Clubes extends Controller{
 
         $clubeModel = $this->model("Clube");
 
-        $clubes = $clubeModel->listAll();
+        $clubes = $clubeModel->select();
 
         echo json_encode($clubes, JSON_UNESCAPED_UNICODE);
     }
@@ -17,7 +17,7 @@ class Clubes extends Controller{
 
         $clubeModel = $this->model("Clube");
 
-        $clube = $clubeModel->listAll($id);
+        $clube = $clubeModel->select($id);
 
         echo json_encode($clube, JSON_UNESCAPED_UNICODE);
 

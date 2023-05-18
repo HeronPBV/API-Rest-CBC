@@ -9,7 +9,7 @@ class Clube{
     public $clube;
     public $saldo_disponivel;
 
-    public function listAll(int $id = null){
+    public function select(int $id = null){
 
         if(is_null($id)){
 
