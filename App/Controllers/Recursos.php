@@ -8,6 +8,11 @@ class Recursos extends Controller{
 
         $dadosConsumo = $this->getRequestBody();
 
+        if(empty($dadosConsumo)){
+            echo "Faltam dados na requisição";
+            die();
+        }
+
         $recursoModel = $this->model("Recurso");
         $clubeModel = $this->model("Clube");
 

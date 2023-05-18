@@ -27,6 +27,11 @@ class Clubes extends Controller{
 
         $novoClube = $this->getRequestBody();
 
+        if(empty($novoClube)){
+            echo "Faltam dados na requisição";
+            die();
+        }
+
         $clubeModel = $this->model("Clube");
         $clubeModel->clube = $novoClube->clube;
         $clubeModel->saldo_disponivel = $novoClube->saldo_disponivel;
