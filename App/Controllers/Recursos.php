@@ -8,17 +8,21 @@ class Recursos extends Controller{
 
         $dadosConsumo = $this->getRequestBody();
 
-        if(empty($dadosConsumo)){
+        $isValid = $this->IsRequestValid($dadosConsumo);
+        if(!is_bool($isValid)){
             http_response_code(400);
-            echo json_encode(["erro" => "Faltam dados na requisição"]);
+            echo json_encode([
+                "Erro" => $isValid,
+                "Instruções" => "São necessários três parametros: 'clube_id', 'recurso_id' e 'valor_consumo', dessa exata forma, devendo o valor de consumo ser positivo"
+            ]);
             die();
         }
 
         $recursoModel = $this->model("Recurso");
         $clubeModel = $this->model("Clube");
 
-        $clube_id = $dadosConsumo->clube_id;
-        $recurso_id = $dadosConsumo->recurso_id;
+        $clube_id = (int)$dadosConsumo->clube_id;
+        $recurso_id = (int)$dadosConsumo->recurso_id;
         $valor_consumo = (float)(str_replace(",", ".", $dadosConsumo->valor_consumo));
 
         $retornoClube = $clubeModel->select($clube_id);
@@ -48,12 +52,12 @@ class Recursos extends Controller{
                 ]);
             }else{
                 http_response_code(500);
-                echo json_encode(["erro" => "Problemas ao consumir o recurso"]);
+                echo json_encode(["Erro" => "Problemas ao consumir o recurso"]);
             }
 
         }else{
             http_response_code(400);
-            echo json_encode(["erro" => $retornoTemSaldo]);
+            echo json_encode(["Erro" => $retornoTemSaldo]);
         }
     
         
@@ -65,6 +69,20 @@ class Recursos extends Controller{
             return "O saldo disponível do recurso é insuficiente";
         }elseif($clube->saldo_disponivel < $valor_consumo){
             return "O saldo disponível do clube é insuficiente";
+        }else{
+            return true;
+        }
+
+    }
+
+    private function IsRequestValid($request){
+
+        if(empty($request)){
+            return "É necessário um corpo para essa requisição";
+        }elseif(empty($request->clube_id) || empty($request->recurso_id) || empty($request->valor_consumo)){
+            return "Os dados inseridos são inválidos";
+        }elseif((float)($request->valor_consumo) < 0){
+            return "Não é possivel consumir um valor negativo";
         }else{
             return true;
         }

@@ -19,7 +19,7 @@ class Recurso{
 
             if (!$result) {
                 http_response_code(400);
-                return ["erro" => "Recurso não encontrado"];
+                return ["Erro" => "Recurso não encontrado"];
             }
 
             $this->id = $result->id;
@@ -30,7 +30,7 @@ class Recurso{
             return $this;
         } else {
             http_response_code(500);
-            return ["erro" => "Query não executada"];
+            return ["Erro" => "Query não executada"];
         }
     }
 
@@ -46,7 +46,7 @@ class Recurso{
             return $this;
         } else {
             http_response_code(500);
-            return ["erro" => "Query não executada"];
+            return ["Erro" => "Query não executada"];
         }
 
     }
@@ -58,7 +58,7 @@ class Recurso{
 
         if($clube->update() && $this->update()){
             http_response_code(200);
-            return ["mensagem" => "ok"];
+            return ["Mensagem" => "ok"];
         }
 
     }

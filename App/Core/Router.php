@@ -33,7 +33,7 @@ class Router{
 
         }else{
             http_response_code(404);
-            echo json_encode(["erro" => "Recurso não encontrado"]);
+            echo json_encode(["Erro" => "Recurso não encontrado"]);
 
             exit;
         }
@@ -49,7 +49,7 @@ class Router{
 
                 if(get_class($this->controller) == "Recursos"){
                     http_response_code(400);
-                    echo json_encode(["erro" => "Método não suportado"]);
+                    echo json_encode(["Erro" => "Método não suportado"]);
                     exit;
                 }elseif(isset($url[2])){
                     $this->controllerMethod = "find";
@@ -66,7 +66,7 @@ class Router{
 
             default: 
                 http_response_code(400);
-                echo json_encode(["erro" => "Método não suportado"]);
+                echo json_encode(["Erro" => "Método não suportado"]);
                 exit;
                 break;
         }

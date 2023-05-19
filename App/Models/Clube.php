@@ -24,7 +24,7 @@ class Clube{
                 return $result;
             } else {
                 http_response_code(404);
-                return ["erro" => "Nada foi encontrado"];
+                return ["Erro" => "Nada foi encontrado"];
             }
         
         }else{
@@ -38,7 +38,7 @@ class Clube{
 
                 if (!$result) {
                     http_response_code(404);
-                    return ["erro" => "Clube não encontrado"];
+                    return ["Erro" => "Clube não encontrado"];
                 }
 
                 $this->id = $result->id;
@@ -49,7 +49,7 @@ class Clube{
                 return $this;
             } else {
                 http_response_code(500);
-                return ["erro" => "Query não executada"];
+                return ["Erro" => "Query não executada"];
             }
 
         }
@@ -69,7 +69,7 @@ class Clube{
             return $this;
         } else {
             http_response_code(500);
-            return ["erro" => "Query não executada"];
+            return ["Erro" => "Query não executada"];
         }
 
     }
@@ -86,7 +86,7 @@ class Clube{
             return $this;
         } else {
             http_response_code(500);
-            return ["erro" => "Query não executada"];
+            return ["Erro" => "Query não executada"];
         }
 
     }
