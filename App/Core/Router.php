@@ -25,8 +25,9 @@ class Router{
 
             http_response_code(200);
             echo json_encode([
-                "nome" => "CBC API Rest Gerenciamento de Recursos",
-                "instrução" => "Acesse a documentação para saber os endpoints disponíveis"
+                "Nome" => "CBC API Rest Gerenciamento de Recursos",
+                "Instrução" => "Acesse a documentação para saber os endpoints disponíveis",
+                "Documentação" => "https://github.com/HeronPBV/API-Rest-CBC"
             ]);
             
             exit;
