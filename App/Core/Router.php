@@ -53,7 +53,7 @@ class Router{
                     exit;
                 }elseif(isset($url[2])){
                     $this->controllerMethod = "find";
-                    $this->params = [$url[2]];
+                    $this->params = [(int)$url[2]];
                 }else{
                     $this->controllerMethod = "index";
                 }
