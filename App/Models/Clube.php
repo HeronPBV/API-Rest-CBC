@@ -24,7 +24,7 @@ class Clube{
                 return $result;
             } else {
                 http_response_code(404);
-                return ["Erro" => "Nada foi encontrado"];
+                return ["Erro" => "Nenhum clube cadastrado"];
             }
         
         }else{
