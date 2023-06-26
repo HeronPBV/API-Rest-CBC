@@ -6,4 +6,4 @@
     const DBPORT = '3306';
     const DBNAME = 'CBC_Test_API';
     const DBUSER = 'root';
-    const DBPASS = 'root';
+    const DBPASS = '';
