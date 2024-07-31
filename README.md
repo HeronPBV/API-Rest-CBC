@@ -2,7 +2,7 @@
 
 ## Sobre o projeto e seu desenvolvimento
 
-Aplicação de gerenciamento de recursos financeiros de clubes. 🏆
+Aplicação de gerenciamento de recursos financeiros de clubes esportivos. 🏆
 
 ### Tecnologias utilizadas
 
