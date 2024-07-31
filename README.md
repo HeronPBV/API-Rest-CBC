@@ -3,6 +3,7 @@
 ## Sobre o projeto e seu desenvolvimento
 
 Aplicação de gerenciamento de recursos financeiros de clubes esportivos. 🏆
+O projeto é parte do meu portifólio, sendo esta a sua única função: demonstrar conhecimento sólido em criação de API's Rest.
 
 ### Tecnologias utilizadas
 
