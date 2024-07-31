@@ -1,6 +1,4 @@
-# API REST - CBC
-
-Teste para Desenvolvedor do Comitê Brasileiro de Clubes
+# API REST - Gerenciamento de recursos financeiros
 
 ## Sobre o projeto e seu desenvolvimento
 
